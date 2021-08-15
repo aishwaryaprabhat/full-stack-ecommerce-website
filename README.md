@@ -9,3 +9,8 @@ A full-stack E-commerce website built using React, Redux, Django &amp; PostgreSQ
 ## Building the backend
 - `django-admin startproject backend`
 - `python manage.py startapp base`
+- `python manage.py createsuperuser`
+- DB structure
+![](./readme_images/tables.png)
+- `python manage.py makemigrations`
+- `python manage.py migrate`
