@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useSelector} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Button, Card, ListGroupItem } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import axios from 'axios'
@@ -9,12 +9,13 @@ import { listProductDetails } from '../actions/productActions'
 const ProductScreen = ({match}) => {
 
     const dispatch = useDispatch()
-
+    const productDetails = useSelector(state => state.productDetails)
+    const {loading, error, product} = productDetails
     useEffect(()=>{
         dispatch(listProductDetails(match.params.id))
         
     }, [])
-    const [product, setProduct] = useState([])
+    // const [product, setProduct] = useState([])
     return (
         <div>
             <Link to="/" className="btn btn-light my-3">Go Back</Link>
