@@ -16,7 +16,7 @@ const ProductScreen = ({match}) => {
     useEffect(()=>{
         dispatch(listProductDetails(match.params.id))
         
-    }, [])
+    }, [dispatch, match])
     // const [product, setProduct] = useState([])
     return (
         <div>
