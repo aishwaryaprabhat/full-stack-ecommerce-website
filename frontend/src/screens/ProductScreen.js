@@ -8,7 +8,7 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listProductDetails } from '../actions/productActions'
 
-const ProductScreen = ({match}) => {
+const ProductScreen = ({match, history}) => {
     const [qty, setQty] = useState(1)
 
     const dispatch = useDispatch()
@@ -18,6 +18,11 @@ const ProductScreen = ({match}) => {
         dispatch(listProductDetails(match.params.id))
         
     }, [dispatch, match])
+
+    const addToCartHandler = () =>{
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+        console.log('Add to cart:', match.params.id)
+    }
     // const [product, setProduct] = useState([])
     return (
         <div>
@@ -87,7 +92,15 @@ const ProductScreen = ({match}) => {
                             )}
                             <ListGroupItem>
                                 <Row>
-                                    <Button className='btn-block' type="button" disabled={product.countInStock==0}>ADD TO CART</Button>
+                                    <Button 
+                                    onClick={addToCartHandler}
+                                    className='btn-block' 
+                                    type="button" 
+                                    disabled={product.countInStock==0}>
+                                    
+                                    ADD TO CART
+                                        
+                                    </Button>
                                 </Row>
                             </ListGroupItem>
                         </ListGroup>
